@@ -22,4 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')/*->middleware('auth')*/->group(function (){
     Route::resource('categoria', 'CategoriaController');
     Route::resource('editora', 'EditoraController');
+	Route::resource('idiomas', 'IdiomaController');
 });
+
