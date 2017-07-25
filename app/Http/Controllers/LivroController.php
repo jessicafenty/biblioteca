@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Autor;
+use App\Livro;
 use Illuminate\Http\Request;
 
-class AutorController extends Controller
+class LivroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class AutorController extends Controller
      */
     public function index()
     {
-        $autores = Autor::paginate(5);
-        return view('autor.index',compact('autores'));
+        $livros = Livro::paginate(5);
+        return view('livro.index',compact('livros'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AutorController extends Controller
      */
     public function create()
     {
-        return view('autor.create');
+        //
     }
 
     /**
@@ -36,9 +36,7 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-        Autor::create($request->all());
-
-        return redirect('admin/autor');
+        //
     }
 
     /**
@@ -49,10 +47,7 @@ class AutorController extends Controller
      */
     public function show($id)
     {
-        $autor = Autor::findOrFail($id);
-        return view('autor.show',compact('autor'));
-        //$autores = Autor::all();
-       // return view('autor.index',compact('autores'));
+        //
     }
 
     /**
@@ -63,8 +58,7 @@ class AutorController extends Controller
      */
     public function edit($id)
     {
-        $autor = Autor::findOrFail($id);
-        return view('autor.edit',compact('autor'));
+        //
     }
 
     /**
@@ -76,9 +70,7 @@ class AutorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $autor = Autor::findOrFail($id);
-        $autor->update($request->all());
-        return redirect('admin/autor');
+        //
     }
 
     /**
@@ -89,8 +81,6 @@ class AutorController extends Controller
      */
     public function destroy($id)
     {
-        $autor = Autor::findOrFail($id);
-        $autor->delete();
-        return redirect('admin/autor');
+        //
     }
 }
