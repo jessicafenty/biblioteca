@@ -1,12 +1,12 @@
 @extends('default')
 
-@section('titulo', 'Atualizar Editora')
+@section('titulo', 'Atualizar Livro')
 
 @section('conteudo')
 
-    <form action="{{route('editora.update', $editora->id)}}" class="form-horizontal" method="post">
+    <form action="{{route('livro.update', $livro->id)}}" class="form-horizontal" method="post">
         <input type="hidden" name="_method" value="PUT">
-        @include('editora.form')
+        @include('livro.form')
 
     </form>
 
