@@ -1,12 +1,12 @@
 @extends('default')
 
-@section('titulo', 'Cadastro de Editora')
+@section('titulo', 'Cadastro de Livros')
 
 @section('conteudo')
 
-    <form action="{{route('editora.store')}}" class="form-horizontal" method="post">
+    <form action="{{route('livro.store')}}" class="form-horizontal" method="post">
 
-        @include('editora.form')
+        @include('livro.form')
 
     </form>
 
