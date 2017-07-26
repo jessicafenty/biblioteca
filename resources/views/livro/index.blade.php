@@ -9,7 +9,8 @@
             <tr>
                 <td>{{$livro->id}}</td>
                 <td width="85%"><strong>{{$livro->titulo}}</strong></td>
-                <td width="85%"><strong>{{$livro->autors->nome}}</strong></td>
+                <?php $autor = \App\Autor::find($livro->idAutor); ?>
+                <td width="85%"><strong>{{$autor->nome}}</strong></td>
                 <td>
                     {!! Form::open(array('route' => array('livro.show', $livro->id), 'method' => 'GET', 'style'=>'display: inline-block')) !!}
                     {!! csrf_field() !!}

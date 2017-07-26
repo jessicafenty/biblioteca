@@ -36,9 +36,17 @@
         <input type="text" name="valor" id="valor" class="form-control" value="{{$livro->valor ?? ''}}" placeholder="Valor">
     </div>
 </div>
-
-<select name="" id="">
-    <option value=""></option></select>
+<div class="form-group">
+    <label for="idCategoria" class="control-label col-sm-2">Categoria</label>
+    <div class="col-sm-10">
+        <select name="categoria" id="categoria">
+            <?php $categorias = \App\Categoria::all(); ?>
+            @foreach($categorias as $key => $value)
+                <option value="{{$key}}">{{$value['descricao']}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
         <input type="submit" value="Salvar" class="btn btn-primary">
