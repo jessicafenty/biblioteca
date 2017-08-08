@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Editora;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditoraRequest;
 
 class EditoraController extends Controller
 {
@@ -34,7 +35,7 @@ class EditoraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EditoraRequest $request)
     {
         Editora::create($request->all());
         return redirect('admin/editora');
@@ -71,7 +72,7 @@ class EditoraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditoraRequest $request, $id)
     {
         $editora = Editora::findOrFail($id);
         $editora->update($request->all());

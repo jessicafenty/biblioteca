@@ -10,15 +10,15 @@ class Livro extends Model
         'num_pag', 'ano_pub', 'valor', 'idCategoria', 'idEditora', 'idAutor', 'idIdioma'];
 
     public function autor(){
-        return $this->hasOne('App\Autor');
+        return $this->belongsTo('App\Autor', 'idAutor');
     }
     public function editora(){
-        return $this->hasOne('App\Editora');
+        return $this->belongsTo('App\Editora','idEditora');
     }
     public function categoria(){
-        return $this->hasOne('App\Categoria');
+        return $this->belongsTo('App\Categoria', 'idCategoria');
     }
     public function idioma(){
-        return $this->hasOne('App\Idioma');
+        return $this->belongsTo('App\Idioma', 'idIdioma');
     }
 }

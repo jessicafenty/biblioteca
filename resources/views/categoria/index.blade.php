@@ -3,7 +3,11 @@
 @section('titulo', 'Gerenciamento de Categorias')
 
 @section('conteudo')
-    <p><a href="{{route('categoria.create')}}" class="btn btn-success">Novo</a></p>
+    <div>
+        <a href="{{route('categoria.create')}}" class="btn btn-success">Novo</a>
+        <a href="javascript:window.history.go(-1)" class="btn btn-default">Cancelar</a>
+    </div>
+    <br>
     <table class="table table-hover">
         @foreach($categorias as $categoria)
             <tr>

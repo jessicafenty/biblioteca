@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Idioma;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditoraRequest;
 
 class IdiomaController extends Controller
 {
@@ -35,7 +36,7 @@ class IdiomaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EditoraRequest $request)
     {
         Idioma::create($request->all());
         return redirect('admin/idiomas');
@@ -72,7 +73,7 @@ class IdiomaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditoraRequest $request, $id)
     {
 	    $idioma = Idioma::findOrFail($id);
 	    $idioma->update($request->all());

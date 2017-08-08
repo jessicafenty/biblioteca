@@ -5,16 +5,18 @@
 @section('conteudo')
 
     <div>
+        <h2>{{$livro->titulo}}</h2>
         <p>{{$livro->descricao}}</p>
         <p>{{$livro->sumario}}</p>
         <p>{{$livro->valor}}</p>
         <p>{{$livro->ano_pub}}</p>
         <p>{{$livro->num_pag}}</p>
-        <p>{{$livro->autors->nome}}</p>
-        <p>{{$livro->editoras->descricao}}</p>
-        <p>{{$livro->categorias->descricao}}</p>
-        <p>{{$livro->idiomas->nome}}</p>
-        <p><small>Criado em: {{$livro->created_at->format('d/m/Y H:i')}} | Atualizado em: {{$livro->updated_at->format('d/m/Y H:i')}}</small></p>
+        <p>{{App\Categoria::findOrFail($livro->idCategoria)->descricao}}</p>
+        <p>{{App\Editora::findOrFail($livro->idEditora)->descricao}}</p>
+        <p>{{App\Autor::findOrFail($livro->idAutor)->nome}}</p>
+        <p>{{App\Idioma::findOrFail($livro->idIdioma)->nome}}</p>
+
+
     </div>
 
     <div>

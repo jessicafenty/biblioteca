@@ -10,6 +10,7 @@
 </head>
 <body>
 <section class="container">
+    @include('verificacao.erros')
     <div class="panel panel-default">
         <div class="panel-heading">@yield('titulo')</div>
         <div class="panel-body">@yield('conteudo')</div>

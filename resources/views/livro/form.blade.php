@@ -37,12 +37,49 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="idCategoria" class="control-label col-sm-2">Categoria</label>
+    <label for="idCategoria" class="control-label col-sm-2">
+        <a href="{{route('categoria.create')}}">Categoria</a>
+    </label>
     <div class="col-sm-10">
         <select name="categoria" id="categoria">
-            <?php $categorias = \App\Categoria::all(); ?>
-            @foreach($categorias as $key => $value)
-                <option value="{{$key}}">{{$value['descricao']}}</option>
+            @foreach($categorias as $value)
+                <option value="{{$value['id']}}" {{ $value['id'] === (isset($livro->idCategoria) ? $livro->idCategoria : '' ) ? 'selected' : '' }}>{{$value['descricao']}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="idEditora" class="control-label col-sm-2">
+        <a href="{{route('editora.create')}}">Editora</a>
+    </label>
+    <div class="col-sm-10">
+        <select name="editora" id="editora">
+            @foreach($editoras as $value)
+                <option value="{{$value['id']}}" {{ $value['id'] === (isset($livro->idEditora) ? $livro->idEditora : '' ) ? 'selected' : '' }}>{{$value['descricao']}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="idAutor" class="control-label col-sm-2">
+        <a href="{{route('autor.create')}}">Autor</a>
+    </label>
+    <div class="col-sm-10">
+        <select name="autor" id="autor">
+            @foreach($autors as $value)
+                <option value="{{$value['id']}}" {{ $value['id'] === (isset($livro->idAutor) ? $livro->idAutor : '' ) ? 'selected' : '' }}>{{$value['nome']}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="idIdioma" class="control-label col-sm-2">
+        <a href="{{route('idiomas.create')}}">Idioma</a>
+    </label>
+    <div class="col-sm-10">
+        <select name="idioma" id="idioma">
+            @foreach($idiomas as $value)
+                <option value="{{$value['id']}}" {{ $value['id'] === (isset($livro->idIdioma) ? $livro->idIdioma : '' ) ? 'selected' : '' }}>{{$value['nome']}}</option>
             @endforeach
         </select>
     </div>

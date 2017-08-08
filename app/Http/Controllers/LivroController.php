@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Autor;
+use App\Categoria;
+use App\Editora;
+use App\Idioma;
 use App\Livro;
 use Illuminate\Http\Request;
+use App\Http\Requests\LivroRequest;
 
 class LivroController extends Controller
 {
@@ -15,6 +20,7 @@ class LivroController extends Controller
     public function index()
     {
         $livros = Livro::paginate(5);
+
         return view('livro.index',compact('livros'));
     }
 
@@ -25,7 +31,11 @@ class LivroController extends Controller
      */
     public function create()
     {
-        return view('livro.create');
+        $categorias = Categoria::all();
+        $editoras = Editora::all();
+        $autors = Autor::all();
+        $idiomas = Idioma::all();
+        return view('livro.create', compact( 'categorias', 'editoras', 'autors', 'idiomas'));
     }
 
     /**
@@ -34,9 +44,26 @@ class LivroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LivroRequest $request)
     {
-        //
+
+        $categoria = Categoria::find($request->input('categoria'));
+        $editora = Editora::find($request->input('editora'));
+        $autor = Autor::find($request->input('autor'));
+        $idioma = Idioma::find($request->input('idioma'));
+        $livro = new Livro();
+        $livro->titulo = $request->input('titulo');
+        $livro->descricao = $request->input('descricao');
+        $livro->sumario = $request->input('sumario');
+        $livro->num_pag = $request->input('num_pag');
+        $livro->ano_pub = $request->input('ano_pub');
+        $livro->valor = $request->input('valor');
+        $livro->categoria()->associate($categoria);
+        $livro->editora()->associate($editora);
+        $livro->autor()->associate($autor);
+        $livro->idioma()->associate($idioma);
+        $livro->save();
+        return redirect('admin/livro');
     }
 
     /**
@@ -47,7 +74,8 @@ class LivroController extends Controller
      */
     public function show($id)
     {
-        //
+        $livro = Livro::findOrFail($id);
+        return view('livro.show', compact('livro'));
     }
 
     /**
@@ -58,7 +86,12 @@ class LivroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorias = Categoria::all();
+        $editoras = Editora::all();
+        $autors = Autor::all();
+        $idiomas = Idioma::all();
+        $livro = Livro::findOrFail($id);
+        return view('livro.edit', compact( 'livro','categorias', 'editoras', 'autors', 'idiomas'));
     }
 
     /**
@@ -68,9 +101,20 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LivroRequest $request, $id)
     {
-        //
+        $categoria = Categoria::find($request->input('categoria'));
+        $editora = Editora::find($request->input('editora'));
+        $autor = Autor::find($request->input('autor'));
+        $idioma = Idioma::find($request->input('idioma'));
+        $livro = Livro::findOrFail($id);
+        $livro->categoria()->associate($categoria);
+        $livro->editora()->associate($editora);
+        $livro->autor()->associate($autor);
+        $livro->idioma()->associate($idioma);
+        $livro->update($request->all());
+
+        return redirect()->route('livro.show', ['id' => $livro->id]);
     }
 
     /**
@@ -81,6 +125,9 @@ class LivroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $livro = Livro::findOrFail($id);
+        $livro->delete();
+
+        return redirect('admin/livro');
     }
 }

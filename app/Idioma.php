@@ -9,6 +9,6 @@ class Idioma extends Model
     protected $fillable = ['nome'];
 
     public function livro(){
-        return $this->belongsTo('App\Livro');
+        return $this->hasMany('App\Livro', 'idIdioma');
     }
 }

@@ -3,7 +3,11 @@
 @section('titulo', 'Gerenciamento de Livros')
 
 @section('conteudo')
-    <p><a href="{{route('livro.create')}}" class="btn btn-success">Novo</a></p>
+    <div>
+        <a href="{{route('livro.create')}}" class="btn btn-success">Novo</a>
+        <a href="javascript:window.history.go(-1)" class="btn btn-default">Cancelar</a>
+    </div>
+    <br>
     <table class="table table-hover">
         @foreach($livros as $livro)
             <tr>

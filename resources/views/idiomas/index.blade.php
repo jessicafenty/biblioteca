@@ -3,7 +3,11 @@
 @section('titulo', 'Cadastro de Idiomas')
 
 @section('conteudo')
-    <p><a href="{{route('idiomas.create')}}" class="btn btn-success">Novo Idioma</a></p>
+    <div>
+        <a href="{{route('idiomas.create')}}" class="btn btn-success">Novo Idioma</a>
+        <a href="javascript:window.history.go(-1)" class="btn btn-default">Cancelar</a>
+    </div>
+    <br>
     <table class="table table-hover">
         @foreach($idiomas as $idioma)
             <tr>

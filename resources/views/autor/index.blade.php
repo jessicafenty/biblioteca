@@ -3,7 +3,11 @@
 @section('titulo','Gestão de autores')
 
 @section('conteudo')
-    <p> <a href="{{route('autor.create')}}" class="btn btn-success">Novo Autor</a></p>
+    <div>
+        <a href="{{route('autor.create')}}" class="btn btn-success">Novo Autor</a>
+        <a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a>
+    </div>
+    <br>
     <table class="table table-hover">
         @foreach($autores as $autor)
             <tr>

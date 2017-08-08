@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Autor;
 use Illuminate\Http\Request;
+use App\Http\Requests\AutorRequest;
 
 class AutorController extends Controller
 {
@@ -34,7 +35,7 @@ class AutorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AutorRequest $request)
     {
         Autor::create($request->all());
 
@@ -74,7 +75,7 @@ class AutorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AutorRequest $request, $id)
     {
         $autor = Autor::findOrFail($id);
         $autor->update($request->all());
